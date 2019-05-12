@@ -4,4 +4,162 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
+  <changeSet id="CREATE_TABLE_USERS" author="tryputs">
+    <createTable tableName="users">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="users_pk" />
+      </column>
+      <column name="first_name" type="VARCHAR(50)" />
+      <column name="last_name" type="VARCHAR(50)" />
+      <column name="email" type="VARCHAR(50)">
+        <constraints nullable="false" unique="true" />
+      </column>
+      <column name="password" type="VARCHAR(255)">
+        <constraints nullable="false" />
+      </column>
+      <column name="role" type="VARCHAR(50)">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="users" />
+    </rollback>
+  </changeSet>
+
+  <changeSet id="CREATE_TABLE_AUTHORS" author="tryputs">
+    <createTable tableName="authors">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="authors_pk" />
+      </column>
+      <column name="first_name" type="VARCHAR(50)" />
+      <column name="last_name" type="VARCHAR(50)" />
+      <column name="dob" type="DATE"/>
+    </createTable>
+    <rollback>
+      <dropTable tableName="authors" />
+    </rollback>
+  </changeSet>
+
+  <changeSet id="CREATE_TABLE_BOOKS" author="tryputs">
+    <createTable tableName="books">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="books_pk" />
+      </column>
+      <column name="title" type="VARCHAR(50)">
+        <constraints nullable="false" unique="true" />
+      </column>
+      <column name="pages" type="BIGINT"/>
+    </createTable>
+    <rollback>
+      <dropTable tableName="books" />
+    </rollback>
+  </changeSet>
+
+  <changeSet id="CREATE_BOOK_AUTHORS_TABLE" author="tryputs">
+    <createTable tableName="books_authors">
+      <column name="book_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="author_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <addForeignKeyConstraint baseTableName="books_authors" baseColumnNames="author_id" constraintName="fk_books_authors__authors"
+                             referencedTableName="authors"
+                             referencedColumnNames="id"/>
+    <addForeignKeyConstraint baseTableName="books_authors" baseColumnNames="book_id" constraintName="fk_books_authors__books"
+                             referencedTableName="books"
+                             referencedColumnNames="id"/>
+    <addPrimaryKey tableName="books_authors" columnNames="book_id, author_id" />
+    <rollback>
+      <dropTable tableName="books_authors"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet id="CREATE_TABLE_GENRES" author="tryputs">
+    <createTable tableName="genres">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="genres_pk" />
+      </column>
+      <column name="name" type="VARCHAR(50)">
+        <constraints nullable="false" unique="true" />
+      </column>
+    </createTable>
+    <rollback>
+      <dropTable tableName="genres" />
+    </rollback>
+  </changeSet>
+
+  <changeSet id="CREATE_BOOKS_GENRES_TABLE" author="tryputs">
+    <createTable tableName="books_genres">
+      <column name="book_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="genre_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <addForeignKeyConstraint baseTableName="books_genres" baseColumnNames="genre_id" constraintName="fk_books_genres__genres"
+                             referencedTableName="genres"
+                             referencedColumnNames="id"/>
+    <addForeignKeyConstraint baseTableName="books_genres" baseColumnNames="book_id" constraintName="fk_books_genres__books"
+                             referencedTableName="books"
+                             referencedColumnNames="id"/>
+    <addPrimaryKey tableName="books_genres" columnNames="book_id, genre_id" />
+    <rollback>
+      <dropTable tableName="books_genres"/>
+    </rollback>
+  </changeSet>
+
+  <changeSet id="CREATE_TABLE_CARDS" author="tryputs">
+    <createTable tableName="cards">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="cards_pk" />
+      </column>
+      <column name="status" type="VARCHAR(50)">
+        <constraints nullable="false" />
+      </column>
+      <column name="user_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="book_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <addForeignKeyConstraint baseTableName="cards" baseColumnNames="user_id" constraintName="fk_cards__users"
+                             referencedTableName="users"
+                             referencedColumnNames="id" />
+    <addForeignKeyConstraint baseTableName="cards" baseColumnNames="book_id" constraintName="fk_cards__books"
+                             referencedTableName="books"
+                             referencedColumnNames="id" />
+    <rollback>
+      <dropTable tableName="cards" />
+    </rollback>
+  </changeSet>
+
+  <changeSet id="CREATE_TABLE_RECORDS" author="tryputs">
+    <createTable tableName="records">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="records_pk" />
+      </column>
+      <column name="user_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="card_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="receive_date" type="DATE"/>
+      <column name="return_date" type="DATE"/>
+    </createTable>
+    <addForeignKeyConstraint baseTableName="records" baseColumnNames="user_id" constraintName="fk_records__users"
+                             referencedTableName="users"
+                             referencedColumnNames="id" />
+    <addForeignKeyConstraint baseTableName="records" baseColumnNames="card_id" constraintName="fk_records__cards"
+                             referencedTableName="cards"
+                             referencedColumnNames="id" />
+    <rollback>
+      <dropTable tableName="records" />
+    </rollback>
+  </changeSet>
+
 </databaseChangeLog>
