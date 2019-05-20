@@ -1,6 +1,6 @@
 package by.tryputs.bookssharing.config;
 
-import by.tryputs.bookssharing.services.UserService;
+import by.tryputs.bookssharing.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -100,7 +100,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         security
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()");
-
     }
 
     @Bean
@@ -112,7 +111,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
             additionalInfo.put("user-uuid", UUID.randomUUID());
             defaultOAuth2AccessToken.setAdditionalInformation(additionalInfo);
             return defaultOAuth2AccessToken;
-
         };
     }
 }
