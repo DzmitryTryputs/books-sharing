@@ -21,10 +21,10 @@ public class Book extends IdentifiableEntity {
     @Column(name = "pages")
     private Long pages;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", cascade = {CascadeType.ALL})
     private List<SharingCard> sharingCards = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "books_genres",
             joinColumns = {@JoinColumn(name = "book_id")},
