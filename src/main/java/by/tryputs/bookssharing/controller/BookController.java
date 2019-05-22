@@ -15,11 +15,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value ="books", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class BookController {
 
-    private BookService bookService;
 
-    @PostMapping(value = "/add")
-    public ResponseEntity addBook(final Book book) {
-        bookService.addBook(book);
-        return  new ResponseEntity<>(HttpStatus.CREATED);
-    }
 }
