@@ -1,12 +1,13 @@
 package by.tryputs.bookssharing.service;
 
-import by.tryputs.bookssharing.converter.user.UserConverter;
-import by.tryputs.bookssharing.dto.user.UserToSave;
+import by.tryputs.bookssharing.converter.UserConverter;
+import by.tryputs.bookssharing.dto.user.UserDto;
 import by.tryputs.bookssharing.entity.Role;
 import by.tryputs.bookssharing.entity.User;
 import by.tryputs.bookssharing.repository.RoleRepository;
 import by.tryputs.bookssharing.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,15 +22,23 @@ import java.util.stream.Collectors;
 
 
 @Service
-@AllArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserService extends AbstractService<User, UserDto, UserRepository, UserConverter> implements UserDetailsService {
 
-    private final UserRepository userRepository;
-    private final UserConverter userConverter;
-    private final RoleRepository roleRepository;
-    private final PasswordEncoder passwordEncoder;
+    private UserRepository userRepository;
+    private UserConverter userConverter;
+    private RoleRepository roleRepository;
+    private PasswordEncoder passwordEncoder;
 
     private static final String USER_ROLE_NAME = "USER";
+
+    @Autowired
+    public UserService(UserRepository repository, UserConverter converter, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+        super(repository, converter);
+        this.userConverter = converter;
+        this.userRepository = repository;
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -44,7 +53,7 @@ public class UserService implements UserDetailsService {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.toString())).collect(Collectors.toList());
     }
 
-    public void signUp(UserToSave userToSave) {
+    public void signUp(UserDto userToSave) {
         final Role userRole = roleRepository.findByName(USER_ROLE_NAME);
 
         final User user = userConverter.convertToDbo(userToSave);
