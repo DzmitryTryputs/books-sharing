@@ -1,19 +1,19 @@
 package by.tryputs.bookssharing.converter;
 
-import by.tryputs.bookssharing.dto.user.UserDto;
+import by.tryputs.bookssharing.dto.UserDto;
 import by.tryputs.bookssharing.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserConverter extends AbstractConverter<User, UserDto> {
+public class UserConverter implements AbstractConverter<User, UserDto> {
 
     @Override
-    protected UserDto constructDto() {
+    public UserDto constructDto() {
         return new UserDto();
     }
 
     @Override
-    protected User constructDbo() {
+    public User constructDbo() {
         return new User();
     }
 }

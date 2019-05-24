@@ -1,11 +1,10 @@
-package by.tryputs.bookssharing.dto.user;
+package by.tryputs.bookssharing.dto;
 
 import lombok.Data;
 
 @Data
-public class UserDto implements AbstractDto {
+public class UserDto extends AbstractResponseDto {
 
-    private Long id;
     private String firstName;
     private String lastName;
     private String password;

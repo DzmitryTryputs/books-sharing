@@ -1,7 +1,7 @@
 package by.tryputs.bookssharing.service;
 
 import by.tryputs.bookssharing.converter.UserConverter;
-import by.tryputs.bookssharing.dto.user.UserDto;
+import by.tryputs.bookssharing.dto.UserDto;
 import by.tryputs.bookssharing.entity.Role;
 import by.tryputs.bookssharing.entity.User;
 import by.tryputs.bookssharing.repository.RoleRepository;
@@ -22,7 +22,8 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class UserService extends AbstractService<User, UserDto, UserRepository, UserConverter> implements UserDetailsService {
+@AllArgsConstructor
+public class UserService implements UserDetailsService {
 
     private UserRepository userRepository;
     private UserConverter userConverter;
@@ -30,15 +31,6 @@ public class UserService extends AbstractService<User, UserDto, UserRepository, 
     private PasswordEncoder passwordEncoder;
 
     private static final String USER_ROLE_NAME = "USER";
-
-    @Autowired
-    public UserService(UserRepository repository, UserConverter converter, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
-        super(repository, converter);
-        this.userConverter = converter;
-        this.userRepository = repository;
-        this.roleRepository = roleRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

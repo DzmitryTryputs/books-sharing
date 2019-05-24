@@ -1,30 +1,32 @@
 package by.tryputs.bookssharing.service;
 
-import by.tryputs.bookssharing.converter.AbstractConverter;
-import by.tryputs.bookssharing.dto.user.AbstractDto;
+import by.tryputs.bookssharing.converter.AbstractRequestConverter;
+import by.tryputs.bookssharing.converter.AbstractResponseConverter;
+import by.tryputs.bookssharing.dto.AbstractDto;
+import by.tryputs.bookssharing.dto.AbstractResponseDto;
 import by.tryputs.bookssharing.entity.IdentifiableEntity;
 import by.tryputs.bookssharing.repository.AbstractRepository;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @AllArgsConstructor
-public abstract class AbstractService<Dbo extends IdentifiableEntity, Dto extends AbstractDto, Rep extends AbstractRepository<Dbo, Long>, Con extends AbstractConverter<Dbo, Dto>> {
+public abstract class AbstractService<Dbo extends IdentifiableEntity, RequestDto extends AbstractDto, ResponseDto extends AbstractResponseDto,
+        Rep extends AbstractRepository<Dbo, Long>, ReqCon extends AbstractRequestConverter<Dbo, RequestDto>, ResCon extends AbstractResponseConverter<Dbo, ResponseDto>> {
 
     private Rep repository;
-    private Con converter;
+    private ReqCon reqCon;
+    private ResCon resCon;
 
     @Transactional
-    public Dto post(final Dto dto) {
-        return converter.convertToDto(repository.save(converter.convertToDbo(dto)));
+    public ResponseDto post(final RequestDto dto) {
+        return resCon.convertToDto(repository.save(reqCon.convertToDbo(dto)));
     }
 
     @Transactional
-    public Dto get(final Long id) {
-        return converter.convertToDto(repository.getOne(id));
+    public ResponseDto get(final Long id) {
+        return resCon.convertToDto(repository.getOne(id));
     }
 
     @Transactional
@@ -33,7 +35,7 @@ public abstract class AbstractService<Dbo extends IdentifiableEntity, Dto extend
     }
 
     @Transactional
-    public List<Dto> findAll() {
-        return converter.convertToDto(repository.findAll());
+    public List<ResponseDto> findAll() {
+        return resCon.convertToDto(repository.findAll());
     }
 }

@@ -1,12 +1,12 @@
 package by.tryputs.bookssharing.controller;
 
-import by.tryputs.bookssharing.dto.user.AbstractDto;
+import by.tryputs.bookssharing.dto.AbstractDto;
 import by.tryputs.bookssharing.service.AbstractService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-public abstract class AbstractController<Dto extends AbstractDto, V extends AbstractService> {
+public abstract class AbstractController<ReqDto extends AbstractDto, V extends AbstractService> {
 
     private V service;
 
@@ -25,7 +25,7 @@ public abstract class AbstractController<Dto extends AbstractDto, V extends Abst
     }
 
     @PostMapping("/add")
-    ResponseEntity add(Dto dto) {
+    ResponseEntity add(ReqDto dto) {
         return ResponseEntity.status(HttpStatus.OK).body(service.post(dto));
     }
 
