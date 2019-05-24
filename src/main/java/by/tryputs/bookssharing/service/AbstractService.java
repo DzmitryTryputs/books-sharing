@@ -2,7 +2,7 @@ package by.tryputs.bookssharing.service;
 
 import by.tryputs.bookssharing.converter.AbstractRequestConverter;
 import by.tryputs.bookssharing.converter.AbstractResponseConverter;
-import by.tryputs.bookssharing.dto.AbstractDto;
+import by.tryputs.bookssharing.dto.AbstractRequestDto;
 import by.tryputs.bookssharing.dto.AbstractResponseDto;
 import by.tryputs.bookssharing.entity.IdentifiableEntity;
 import by.tryputs.bookssharing.repository.AbstractRepository;
@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @AllArgsConstructor
-public abstract class AbstractService<Dbo extends IdentifiableEntity, RequestDto extends AbstractDto, ResponseDto extends AbstractResponseDto,
+public abstract class AbstractService<Dbo extends IdentifiableEntity, RequestDto extends AbstractRequestDto, ResponseDto extends AbstractResponseDto,
         Rep extends AbstractRepository<Dbo, Long>, ReqCon extends AbstractRequestConverter<Dbo, RequestDto>, ResCon extends AbstractResponseConverter<Dbo, ResponseDto>> {
 
     private Rep repository;

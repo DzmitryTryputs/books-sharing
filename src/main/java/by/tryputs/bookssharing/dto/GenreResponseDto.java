@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ResponseGenreDto extends AbstractResponseDto {
+public class GenreResponseDto extends AbstractResponseDto {
 
     private String name;
 }

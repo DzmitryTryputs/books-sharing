@@ -1,12 +1,12 @@
 package by.tryputs.bookssharing.controller;
 
-import by.tryputs.bookssharing.dto.AbstractDto;
+import by.tryputs.bookssharing.dto.AbstractRequestDto;
 import by.tryputs.bookssharing.service.AbstractService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-public abstract class AbstractController<ReqDto extends AbstractDto, V extends AbstractService> {
+public abstract class AbstractController<ReqDto extends AbstractRequestDto, V extends AbstractService> {
 
     private V service;
 
