@@ -25,7 +25,7 @@ public abstract class AbstractController<ReqDto extends AbstractRequestDto, V ex
     }
 
     @PostMapping("/add")
-    ResponseEntity add(ReqDto dto) {
+    ResponseEntity add(@RequestBody ReqDto dto) {
         return ResponseEntity.status(HttpStatus.OK).body(service.post(dto));
     }
 
