@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
-public class BookRequestConverter implements AbstractRequestConverter<Book, BookRequestDto> {
+public class BookRequestConverter extends AbstractRequestConverter<Book, BookRequestDto> {
 
     private EntityUtil entityUtil;
 

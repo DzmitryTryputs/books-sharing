@@ -5,7 +5,7 @@ import by.tryputs.bookssharing.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserConverter implements AbstractConverter<User, UserDto> {
+public class UserConverter extends AbstractConverter<User, UserDto> {
 
     @Override
     public UserDto constructDto() {

@@ -5,7 +5,7 @@ import by.tryputs.bookssharing.entity.Author;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AuthorRequestConverter implements AbstractRequestConverter<Author, AuthorRequestDto> {
+public class AuthorRequestConverter extends AbstractRequestConverter<Author, AuthorRequestDto> {
 
     @Override
     public AuthorRequestDto constructDto() {

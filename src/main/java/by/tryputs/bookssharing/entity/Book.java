@@ -3,6 +3,7 @@ package by.tryputs.bookssharing.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,22 +22,28 @@ public class Book extends IdentifiableEntity {
     @Column(name = "pages")
     private Long pages;
 
-    @OneToMany(mappedBy = "book", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<SharingCard> sharingCards = new ArrayList<>();
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "books_genres",
             joinColumns = {@JoinColumn(name = "book_id")},
             inverseJoinColumns = {@JoinColumn(name = "genre_id")}
     )
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<Genre> genres = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "books_authors",
             joinColumns = {@JoinColumn(name = "book_id")},
             inverseJoinColumns = {@JoinColumn(name = "author_id")}
     )
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<Author> authors = new ArrayList<>();
 }

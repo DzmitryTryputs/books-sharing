@@ -5,7 +5,7 @@ import by.tryputs.bookssharing.entity.Genre;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GenreResponseConverter implements AbstractResponseConverter<Genre, GenreResponseDto> {
+public class GenreResponseConverter extends AbstractResponseConverter<Genre, GenreResponseDto> {
     @Override
     public GenreResponseDto constructDto() {
         return new GenreResponseDto();
@@ -14,5 +14,9 @@ public class GenreResponseConverter implements AbstractResponseConverter<Genre, 
     @Override
     public Genre constructDbo() {
         return new Genre();
+    }
+
+    protected String[] getIgnoreProperties() {
+        return new String[]{"genres"};
     }
 }

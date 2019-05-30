@@ -19,7 +19,7 @@ public class Genre extends IdentifiableEntity {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @ManyToMany(mappedBy = "genres", cascade = {CascadeType.ALL})
+    @ManyToMany(mappedBy = "genres", fetch = FetchType.LAZY)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<Book> books = new ArrayList<>();

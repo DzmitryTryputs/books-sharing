@@ -5,7 +5,7 @@ import by.tryputs.bookssharing.entity.Genre;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GenreRequestConverter implements AbstractRequestConverter<Genre, GenreRequestDto> {
+public class GenreRequestConverter extends AbstractRequestConverter<Genre, GenreRequestDto> {
 
     @Override
     public GenreRequestDto constructDto() {

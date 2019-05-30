@@ -1,7 +1,5 @@
 package by.tryputs.bookssharing.dto;
 
-import by.tryputs.bookssharing.entity.Author;
-import by.tryputs.bookssharing.entity.Genre;
 import by.tryputs.bookssharing.entity.SharingCard;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +13,6 @@ public class BookResponseDto extends AbstractResponseDto {
 
     private String title;
     private Long pages;
-    private List<SharingCard> sharingCards = new ArrayList<>();
-    private List<Genre> genres = new ArrayList<>();
-    private List<Author> authors = new ArrayList<>();
+    private List<GenreResponseDto> genres = new ArrayList<>();
+    private List<AuthorResponseDto> authors = new ArrayList<>();
 }

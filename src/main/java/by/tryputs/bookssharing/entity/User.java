@@ -28,16 +28,16 @@ public class User extends IdentifiableEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @ManyToMany(mappedBy = "users", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     @EqualsAndHashCode.Exclude
     private List<Role> roles = new ArrayList<>();
 
-    @OneToMany(mappedBy = "owner", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "owner")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<SharingCard> sharingCards = new ArrayList<>();
 
-    @OneToMany(mappedBy = "receiver", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "receiver")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<SharingRecord> sharingRecords = new ArrayList<>();

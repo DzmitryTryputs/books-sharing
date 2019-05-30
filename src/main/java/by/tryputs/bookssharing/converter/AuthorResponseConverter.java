@@ -2,10 +2,12 @@ package by.tryputs.bookssharing.converter;
 
 import by.tryputs.bookssharing.dto.AuthorResponseDto;
 import by.tryputs.bookssharing.entity.Author;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AuthorResponseConverter implements AbstractResponseConverter<Author, AuthorResponseDto> {
+@AllArgsConstructor
+public class AuthorResponseConverter extends AbstractResponseConverter<Author, AuthorResponseDto> {
 
     @Override
     public AuthorResponseDto constructDto() {
@@ -15,5 +17,9 @@ public class AuthorResponseConverter implements AbstractResponseConverter<Author
     @Override
     public Author constructDbo() {
         return new Author();
+    }
+
+    protected String[] getIgnoreProperties() {
+        return new String[]{"books"};
     }
 }

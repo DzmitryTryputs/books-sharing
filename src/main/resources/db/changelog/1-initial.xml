@@ -194,9 +194,9 @@
     <addForeignKeyConstraint baseTableName="users_roles" baseColumnNames="role_id" constraintName="fk_users_roles__roles"
                              referencedTableName="roles"
                              referencedColumnNames="id"/>
+    <addPrimaryKey tableName="users_roles" columnNames="user_id, role_id" />
     <rollback>
       <dropTable tableName="users_roles"/>
     </rollback>
   </changeSet>
-
 </databaseChangeLog>
