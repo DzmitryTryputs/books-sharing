@@ -17,7 +17,7 @@ public class Role extends IdentifiableEntity {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "users_roles",
             joinColumns = {@JoinColumn(name = "role_id")},

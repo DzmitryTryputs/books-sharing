@@ -1,9 +1,8 @@
 package by.tryputs.bookssharing.controller;
 
 import by.tryputs.bookssharing.dto.UserDto;
-import by.tryputs.bookssharing.service.UserService;
+import by.tryputs.bookssharing.service.UserServiceImpl;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class UserController {
 
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ResponseEntity signUp(@RequestBody final UserDto userToSave) {
