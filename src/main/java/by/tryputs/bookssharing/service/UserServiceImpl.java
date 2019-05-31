@@ -1,7 +1,7 @@
 package by.tryputs.bookssharing.service;
 
 import by.tryputs.bookssharing.converter.UserConverter;
-import by.tryputs.bookssharing.dto.UserDto;
+import by.tryputs.bookssharing.dto.UserSignUpDto;
 import by.tryputs.bookssharing.entity.Role;
 import by.tryputs.bookssharing.entity.User;
 import by.tryputs.bookssharing.repository.RoleRepository;
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.toString())).collect(Collectors.toList());
     }
 
-    public void signUp(UserDto userToSave) {
+    public void signUp(UserSignUpDto userToSave) {
         final Role userRole = roleRepository.findByName(USER_ROLE_NAME);
 
         final User user = userConverter.convertToDbo(userToSave);
