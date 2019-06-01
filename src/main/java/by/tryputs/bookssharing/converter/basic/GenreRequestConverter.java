@@ -1,6 +1,7 @@
-package by.tryputs.bookssharing.converter;
+package by.tryputs.bookssharing.converter.basic;
 
-import by.tryputs.bookssharing.dto.GenreRequestDto;
+import by.tryputs.bookssharing.converter.AbstractRequestConverter;
+import by.tryputs.bookssharing.dto.genre.GenreRequestDto;
 import by.tryputs.bookssharing.entity.Genre;
 import org.springframework.stereotype.Component;
 

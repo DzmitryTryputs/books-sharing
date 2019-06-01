@@ -1,12 +1,18 @@
 package by.tryputs.bookssharing.controller;
 
-import lombok.AllArgsConstructor;
-import org.springframework.http.MediaType;
+import by.tryputs.bookssharing.dto.sharing.SharingCardRequestDto;
+import by.tryputs.bookssharing.service.SharingCardService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@AllArgsConstructor
 @RestController
-@RequestMapping(value ="/sharingcards", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class SharingCardController {
+@RequestMapping("/sharingcards")
+public class SharingCardController extends AbstractController<SharingCardRequestDto, SharingCardService> {
+
+    @Autowired
+    public SharingCardController(SharingCardService service) {
+        super(service);
+    }
+
 }

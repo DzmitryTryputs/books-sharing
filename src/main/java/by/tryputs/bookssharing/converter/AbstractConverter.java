@@ -55,15 +55,15 @@ public abstract class AbstractConverter<Dbo extends IdentifiableEntity, Dto> {
         return convertToDto(collection, Collectors.toList());
     }
 
-    abstract Dto constructDto();
+    public abstract Dto constructDto();
 
-    abstract Dbo constructDbo();
+    public abstract Dbo constructDbo();
 
-    protected String[] getIgnoreProperties() {
+    public String[] getIgnoreProperties() {
         return null;
     }
 
-    protected void setIgnoreProperties(final String[] newProperties) {
+    public void setIgnoreProperties(final String[] newProperties) {
         ignoreProperties = newProperties;
     }
 

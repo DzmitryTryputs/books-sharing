@@ -1,18 +1,16 @@
-package by.tryputs.bookssharing.dto;
+package by.tryputs.bookssharing.dto.author;
 
+import by.tryputs.bookssharing.dto.AbstractResponseDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class AuthorResponseDto extends AbstractResponseDto {
+public class AuthorDto extends AbstractResponseDto {
 
     private String firstName;
     private String lastName;
     private LocalDate dob;
-    private List<BookResponseDto> books = new ArrayList<>();
 }

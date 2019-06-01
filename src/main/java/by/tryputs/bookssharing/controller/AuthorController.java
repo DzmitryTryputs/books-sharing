@@ -1,6 +1,6 @@
 package by.tryputs.bookssharing.controller;
 
-import by.tryputs.bookssharing.dto.AuthorRequestDto;
+import by.tryputs.bookssharing.dto.author.AuthorRequestDto;
 import by.tryputs.bookssharing.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

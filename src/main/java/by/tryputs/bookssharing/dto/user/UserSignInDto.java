@@ -1,4 +1,4 @@
-package by.tryputs.bookssharing.dto;
+package by.tryputs.bookssharing.dto.user;
 
 import lombok.Data;
 

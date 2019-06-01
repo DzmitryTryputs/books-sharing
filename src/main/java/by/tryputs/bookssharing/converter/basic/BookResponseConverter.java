@@ -1,20 +1,21 @@
-package by.tryputs.bookssharing.converter;
+package by.tryputs.bookssharing.converter.basic;
 
-import by.tryputs.bookssharing.dto.BookResponseDto;
+import by.tryputs.bookssharing.converter.AbstractResponseConverter;
+import by.tryputs.bookssharing.dto.book.BookDto;
 import by.tryputs.bookssharing.entity.Book;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class BookResponseConverter extends AbstractResponseConverter<Book, BookResponseDto> {
+public class BookResponseConverter extends AbstractResponseConverter<Book, BookDto> {
 
     private GenreResponseConverter genreResponseConverter;
     private AuthorResponseConverter authorResponseConverter;
 
     @Override
-    public BookResponseDto constructDto() {
-        return new BookResponseDto();
+    public BookDto constructDto() {
+        return new BookDto();
     }
 
     @Override
@@ -22,12 +23,13 @@ public class BookResponseConverter extends AbstractResponseConverter<Book, BookR
         return new Book();
     }
 
-    protected String[] getIgnoreProperties() {
+    @Override
+    public String[] getIgnoreProperties() {
         return new String[]{"genres", "authors"};
     }
 
     @Override
-    public void convertComplexFieldsForDto(Book sourceDto, BookResponseDto targetDto) {
+    public void convertComplexFieldsForDto(Book sourceDto, BookDto targetDto) {
         targetDto.setGenres(genreResponseConverter.convertToDto(sourceDto.getGenres()));
         targetDto.setAuthors(authorResponseConverter.convertToDto(sourceDto.getAuthors()));
     }

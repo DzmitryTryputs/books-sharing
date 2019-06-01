@@ -1,5 +1,6 @@
-package by.tryputs.bookssharing.dto;
+package by.tryputs.bookssharing.dto.user;
 
+import by.tryputs.bookssharing.dto.AbstractRequestDto;
 import lombok.Data;
 
 @Data
