@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/sharingrecords")
+@RequestMapping("api/sharingrecords")
 public class SharingRecordController {
 
     private SharingRecordService service;

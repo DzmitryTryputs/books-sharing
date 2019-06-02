@@ -25,13 +25,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests()
+
+        http.cors().and().authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/swagger-ui.html").permitAll()
                 .antMatchers(HttpMethod.GET, "/v2/api-docs").permitAll()
                 .antMatchers(HttpMethod.GET, "/webjars/springfox-swagger-ui/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/swagger-resources/**").permitAll()
-                .antMatchers("/users/signup").permitAll()
-                .anyRequest().authenticated()
-                .and().formLogin();
+                .antMatchers("users/**").anonymous()
+                .antMatchers("/api/**").authenticated()
+                .and().formLogin().defaultSuccessUrl("/swagger-ui.html");
     }
 }
