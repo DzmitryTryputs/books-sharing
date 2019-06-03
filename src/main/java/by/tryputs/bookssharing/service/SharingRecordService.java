@@ -1,6 +1,6 @@
 package by.tryputs.bookssharing.service;
 
-import by.tryputs.bookssharing.converter.basic.SharingRecordResponseConverter;
+import by.tryputs.bookssharing.converter.basic.sharing.SharingRecordResponseConverter;
 import by.tryputs.bookssharing.dto.sharing.SharingRecordDto;
 import by.tryputs.bookssharing.entity.SharingCard;
 import by.tryputs.bookssharing.entity.SharingRecord;
@@ -13,11 +13,13 @@ import by.tryputs.bookssharing.util.AuthenticationUtil;
 import by.tryputs.bookssharing.util.EntityUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class SharingRecordService {
 
     private SharingRecordRepository repository;
@@ -26,7 +28,7 @@ public class SharingRecordService {
     private SharingRecordResponseConverter converter;
     private EntityUtil entityUtil;
 
-    public SharingRecordDto post(Long cardId) throws BasicBookSharingException {
+    public SharingRecordDto orderBook(Long cardId) throws BasicBookSharingException {
         Long receiverId = authenticationUtil.getUserId();
         SharingCard card =
                 sharingCardRepository.findById(cardId)
@@ -42,6 +44,17 @@ public class SharingRecordService {
             return converter.convertToDto(repository.save(sharingRecord));
         } else {
             throw new BasicBookSharingException("Card with name " + "hasn't " + "found.");
+        }
+    }
+
+    public void returnBook(Long cardId) {
+        Long receiverId = authenticationUtil.getUserId();
+        SharingCard card =
+                sharingCardRepository.findById(cardId)
+                        .orElseThrow(() -> new BasicBookSharingException("Card with name hasn't found."));
+        if (receiverId != null && SharingStatus.ON_HANDS.equals(card.getStatus())) {
+            card.setStatus(SharingStatus.VACANT);
+            sharingCardRepository.save(card);
         }
     }
 }

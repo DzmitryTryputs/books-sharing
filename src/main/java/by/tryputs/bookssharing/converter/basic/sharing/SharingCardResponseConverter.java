@@ -1,6 +1,8 @@
-package by.tryputs.bookssharing.converter.basic;
+package by.tryputs.bookssharing.converter.basic.sharing;
 
 import by.tryputs.bookssharing.converter.AbstractResponseConverter;
+import by.tryputs.bookssharing.converter.basic.book.BookResponseConverter;
+import by.tryputs.bookssharing.converter.basic.user.UserResponseConverter;
 import by.tryputs.bookssharing.dto.sharing.SharingCardDto;
 import by.tryputs.bookssharing.entity.SharingCard;
 import lombok.AllArgsConstructor;
@@ -12,6 +14,7 @@ public class SharingCardResponseConverter extends AbstractResponseConverter<Shar
 
     private BookResponseConverter bookResponseConverter;
     private UserResponseConverter userResponseConverter;
+    private SharingRecordResponseConverter sharingRecordResponseConverter;
 
     @Override
     public SharingCardDto constructDto() {
@@ -32,5 +35,6 @@ public class SharingCardResponseConverter extends AbstractResponseConverter<Shar
     public void convertComplexFieldsForDto(SharingCard sourceDbo, SharingCardDto targetDto) {
         targetDto.setBook(bookResponseConverter.convertToDto(sourceDbo.getBook()));
         targetDto.setUser(userResponseConverter.convertToDto(sourceDbo.getOwner()));
+        targetDto.setSharingRecords(sharingRecordResponseConverter.convertToDto(sourceDbo.getRecords()));
     }
 }

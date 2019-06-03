@@ -1,4 +1,4 @@
-package by.tryputs.bookssharing.converter.basic;
+package by.tryputs.bookssharing.converter.basic.sharing;
 
 import by.tryputs.bookssharing.converter.AbstractRequestConverter;
 import by.tryputs.bookssharing.dto.sharing.SharingCardRequestDto;

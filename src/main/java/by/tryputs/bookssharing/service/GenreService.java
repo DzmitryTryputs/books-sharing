@@ -1,7 +1,7 @@
 package by.tryputs.bookssharing.service;
 
-import by.tryputs.bookssharing.converter.basic.GenreRequestConverter;
-import by.tryputs.bookssharing.converter.basic.GenreResponseConverter;
+import by.tryputs.bookssharing.converter.basic.genre.GenreRequestConverter;
+import by.tryputs.bookssharing.converter.basic.genre.GenreResponseConverter;
 import by.tryputs.bookssharing.dto.genre.GenreRequestDto;
 import by.tryputs.bookssharing.dto.genre.GenreDto;
 import by.tryputs.bookssharing.entity.Genre;

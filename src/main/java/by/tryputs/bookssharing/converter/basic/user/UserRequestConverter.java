@@ -1,4 +1,4 @@
-package by.tryputs.bookssharing.converter.basic;
+package by.tryputs.bookssharing.converter.basic.user;
 
 import by.tryputs.bookssharing.converter.AbstractConverter;
 import by.tryputs.bookssharing.dto.user.UserSignUpDto;

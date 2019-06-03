@@ -1,6 +1,8 @@
-package by.tryputs.bookssharing.converter.basic;
+package by.tryputs.bookssharing.converter.basic.book;
 
 import by.tryputs.bookssharing.converter.AbstractResponseConverter;
+import by.tryputs.bookssharing.converter.basic.genre.GenreResponseConverter;
+import by.tryputs.bookssharing.converter.basic.author.AuthorResponseConverter;
 import by.tryputs.bookssharing.dto.book.BookDto;
 import by.tryputs.bookssharing.entity.Book;
 import lombok.AllArgsConstructor;

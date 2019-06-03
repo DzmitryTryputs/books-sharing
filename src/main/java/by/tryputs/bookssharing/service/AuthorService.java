@@ -1,7 +1,7 @@
 package by.tryputs.bookssharing.service;
 
-import by.tryputs.bookssharing.converter.basic.AuthorRequestConverter;
-import by.tryputs.bookssharing.converter.basic.AuthorResponseConverter;
+import by.tryputs.bookssharing.converter.basic.author.AuthorRequestConverter;
+import by.tryputs.bookssharing.converter.basic.author.AuthorResponseConverter;
 import by.tryputs.bookssharing.dto.author.AuthorRequestDto;
 import by.tryputs.bookssharing.dto.author.AuthorDto;
 import by.tryputs.bookssharing.entity.Author;

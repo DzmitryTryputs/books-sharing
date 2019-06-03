@@ -1,7 +1,7 @@
 package by.tryputs.bookssharing.service;
 
-import by.tryputs.bookssharing.converter.basic.SharingCardRequestConverter;
-import by.tryputs.bookssharing.converter.basic.SharingCardResponseConverter;
+import by.tryputs.bookssharing.converter.basic.sharing.SharingCardRequestConverter;
+import by.tryputs.bookssharing.converter.basic.sharing.SharingCardResponseConverter;
 import by.tryputs.bookssharing.dto.sharing.SharingCardDto;
 import by.tryputs.bookssharing.dto.sharing.SharingCardRequestDto;
 import by.tryputs.bookssharing.entity.SharingCard;

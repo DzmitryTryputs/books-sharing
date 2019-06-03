@@ -1,4 +1,4 @@
-package by.tryputs.bookssharing.converter.basic;
+package by.tryputs.bookssharing.converter.basic.genre;
 
 import by.tryputs.bookssharing.converter.AbstractResponseConverter;
 import by.tryputs.bookssharing.dto.genre.GenreDto;
