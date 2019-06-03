@@ -23,10 +23,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/swagger-ui.html").permitAll()
                 .antMatchers(HttpMethod.GET, "/v2/api-docs").permitAll()
-                .antMatchers(HttpMethod.GET, "/webjars/springfox-swagger-ui").permitAll()
-                .antMatchers(HttpMethod.GET, "/swagger-resources").permitAll()
-                .antMatchers(HttpMethod.POST, "/users").anonymous()
-                .antMatchers("/api").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers(HttpMethod.GET, "/webjars/springfox-swagger-ui/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/swagger-resources/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/users/**").anonymous()
+                .antMatchers("/api/**").authenticated()
                 .and().formLogin();
     }
 }
