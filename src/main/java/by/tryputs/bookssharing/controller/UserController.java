@@ -18,8 +18,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ResponseEntity signUp(@RequestBody final UserSignUpDto userToSave) {
-        userService.signUp(userToSave);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<Long> signUp(@RequestBody final UserSignUpDto userToSave) {
+        return ResponseEntity.status(HttpStatus.CREATED).body( userService.signUp(userToSave));
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("api/books")
+@RequestMapping("/api/books")
 public class BookController extends AbstractController<BookRequestDto, BookService>{
 
     @Autowired

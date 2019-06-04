@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/sharingcards")
+@RequestMapping("/api/sharingcards")
 public class SharingCardController extends AbstractController<SharingCardRequestDto, SharingCardService> {
 
     @Autowired

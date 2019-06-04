@@ -47,7 +47,7 @@ public class UserService implements UserDetailsService {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.toString())).collect(Collectors.toList());
     }
 
-    public void signUp(UserSignUpDto userToSave) {
+    public Long signUp(UserSignUpDto userToSave) {
         final Role userRole = roleRepository.findByName(USER_ROLE_NAME);
 
         final User user = userRequestConverter.convertToDbo(userToSave);
@@ -60,7 +60,7 @@ public class UserService implements UserDetailsService {
 
         user.setPassword(encodedPassword);
 
-        userRepository.save(user);
+        return userRepository.save(user).getId();
     }
 
     public Long getUserIdByUserName(String userName) {

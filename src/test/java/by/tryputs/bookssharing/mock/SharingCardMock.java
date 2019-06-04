@@ -4,6 +4,8 @@ import by.tryputs.bookssharing.dto.sharing.SharingCardDto;
 import by.tryputs.bookssharing.entity.SharingCard;
 import by.tryputs.bookssharing.entity.SharingStatus;
 
+import java.util.Collections;
+
 public class SharingCardMock {
 
     public static SharingCard getSharingCardDbo() {
@@ -11,7 +13,7 @@ public class SharingCardMock {
         sharingCard.setStatus(SharingStatus.VACANT);
         sharingCard.setOwner(UserMock.getUserDboMock());
         sharingCard.setBook(BookMock.getBookDboMock());
-      //  sharingCard.setRecords();
+        sharingCard.setRecords(Collections.singletonList(SharingRecordMock.getSharingRecordDbo()));
         sharingCard.setId(1L);
 
         return sharingCard;
@@ -22,7 +24,7 @@ public class SharingCardMock {
         sharingCard.setStatus(SharingStatus.VACANT);
         sharingCard.setUser(UserMock.getUserDtoMock());
         sharingCard.setBook(BookMock.getBookDtoMock());
-     //   sharingCard.setRecords();
+        sharingCard.setSharingRecords(Collections.singletonList(SharingRecordMock.getSharingRecordDto()));
         sharingCard.setId(1L);
 
         return sharingCard;

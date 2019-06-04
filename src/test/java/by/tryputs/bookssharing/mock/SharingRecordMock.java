@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class SharingRecordMock {
 
     private static final LocalDate RECEIVE_DATE = LocalDate.of(2019, 6, 10);
-    private static final LocalDate RETURN_DATE = RECEIVE_DATE.plusWeeks(1);
+    private static final LocalDate RETURN_DATE = LocalDate.of(2019, 6, 17);
 
 
     public static SharingRecord getSharingRecordDbo() {
@@ -17,7 +17,7 @@ public class SharingRecordMock {
         sharingRecord.setReturnDate(RETURN_DATE);
         sharingRecord.setReceiver(UserMock.getUserDboMock());
         sharingRecord.setId(1L);
-
+        sharingRecord.setSharingCard(SharingCardMock.getSharingCardDbo());
         return sharingRecord;
     }
 

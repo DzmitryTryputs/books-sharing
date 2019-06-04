@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/sharingrecords")
+@RequestMapping("/api/sharingrecords")
 public class SharingRecordController {
 
     private SharingRecordService service;
 
     @PostMapping("/order")
-    public ResponseEntity<SharingRecordDto> add(Long cardId) {
+    public ResponseEntity<SharingRecordDto> order(Long cardId) {
         return ResponseEntity.status(HttpStatus.OK).body(service.orderBook(cardId));
     }
 
-    @PostMapping("/return")
-    public ResponseEntity<SharingRecordDto> back(Long cardId) {
+    @PostMapping(value = "/return")
+    public ResponseEntity back(Long cardId) {
         service.returnBook(cardId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
