@@ -1,8 +1,8 @@
 package by.tryputs.bookssharing.dto.book;
 
 import by.tryputs.bookssharing.dto.AbstractResponseDto;
-import by.tryputs.bookssharing.dto.genre.GenreDto;
 import by.tryputs.bookssharing.dto.author.AuthorDto;
+import by.tryputs.bookssharing.dto.genre.GenreDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
