@@ -4,13 +4,19 @@
             <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Name</th>
+                <th scope="col">Title</th>
+                <th scope="col">Pages</th>
+                <th scope="col">Authors</th>
+                <th scope="col">Genres</th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="(book, index) in booksData" :key="index">
+            <tr v-for="(book, index) in books" :key="index">
                 <td>{{book.id}}</td>
                 <td>{{book.title}}</td>
+                <td>{{book.pages}}</td>
+                <td>{{joinAuthors(book.authors)}}</td>
+                <td>{{joinGenres(book.genres)}}</td>
 
             </tr>
             </tbody>
@@ -25,16 +31,34 @@
         name: "Books",
         data() {
             return {
-                booksData: []
+                books: []
             }
         },
 
         created() {
             axios.get(`/backend/api/books/list`)
                 .then(response => {
-                    this.booksData = response.data;
+                    this.books = response.data;
                 });
+        },
+        methods: {
+            joinGenres(genres) {
+                let out = [];
+                for (let i = 0; i < genres.length; i++) {
+                    out.push(genres[i].name);
+                }
+                return out.join(", ");
+            },
+
+            joinAuthors(authors) {
+                let out = [];
+                for (let i = 0; i < authors.length; i++) {
+                    out.push(authors[i].firstName + " " + authors[i].lastName);
+                }
+                return out.join(", ");
+            }
         }
+
     }
 </script>
 
