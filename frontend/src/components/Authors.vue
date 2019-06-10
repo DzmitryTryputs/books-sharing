@@ -4,13 +4,14 @@
             <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Name</th>
+                <th scope="col">First Name</th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="(genre, index) in genres" :key="index">
-                <td>{{genre.id}}</td>
-                <td>{{genre.name}}</td>
+            <tr v-for="(author, index) in authors" :key="index">
+                <td>{{author.id}}</td>
+                <td>{{author.firstName}}</td>
+
             </tr>
             </tbody>
         </table>
@@ -21,20 +22,22 @@
     import axios from 'axios';
 
     export default {
-        name: "Genres",
+        name: "Authors",
         data() {
             return {
-                genres: []
+                authors: []
             }
         },
+
         created() {
-            axios.get(`/backend/api/genres/list`)
+            axios.get(`/backend/api/authors/list`)
                 .then(response => {
-                    this.genres = response.data;
+                    this.authors = response.data;
                 });
         }
     }
 </script>
+
 <style scoped>
 
 </style>

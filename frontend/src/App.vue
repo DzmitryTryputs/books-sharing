@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-    <Genres />
+    <Header />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Genres from './components/Genres.vue'
+import Header from './components/TheHeader.vue'
 
 export default {
   name: 'app',
   components: {
-    Genres
+    Header
   }
 }
 </script>
