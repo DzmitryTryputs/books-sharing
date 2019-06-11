@@ -27,10 +27,11 @@ import java.util.stream.Collectors;
 @Transactional
 public class UserService implements UserDetailsService {
 
-    private UserRepository userRepository;
-    private UserRequestConverter userRequestConverter;
-    private RoleRepository roleRepository;
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final UserRequestConverter userRequestConverter;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final TokenAuthenticationService authenticationService;
 
     private static final String USER_ROLE_NAME = "USER";
 
@@ -69,5 +70,9 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("User doesn't exist!");
         }
         return user.getId();
+    }
+
+    public void logout(String token) {
+        authenticationService.logout(token);
     }
 }

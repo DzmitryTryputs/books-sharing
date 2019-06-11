@@ -2,7 +2,7 @@
     <footer>
         <div class="container">
       <span class="attribution">
-        Footer
+        Books Sharing
       </span>
         </div>
     </footer>

@@ -19,6 +19,11 @@ export default new Router({
       name: "authors",
       path: "/authors",
       component: () => import("../components/Authors")
+    },
+    {
+      name: "login",
+      path: "/login",
+      component: () => import("../components/Login")
     }
   ]
 });

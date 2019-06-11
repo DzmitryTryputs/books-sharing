@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +36,10 @@ public class User extends IdentifiableEntity {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @NotNull
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled = true;
 
     @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(
