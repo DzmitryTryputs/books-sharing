@@ -1,6 +1,5 @@
 package by.tryputs.bookssharing.config;
 
-import by.tryputs.bookssharing.filter.AuthenticationFilter;
 import by.tryputs.bookssharing.filter.LoginFilter;
 import by.tryputs.bookssharing.service.TokenAuthenticationService;
 import lombok.RequiredArgsConstructor;
@@ -45,9 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().logout()
                 .permitAll().and()
                 .addFilterBefore(new LoginFilter(tokenAuthenticationService, authenticationManager(), objectMapperBuilder),
-                UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(new AuthenticationFilter(tokenAuthenticationService),
-                        UsernamePasswordAuthenticationFilter.class);
+                UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override

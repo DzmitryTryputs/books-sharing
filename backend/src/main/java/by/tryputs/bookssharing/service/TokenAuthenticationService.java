@@ -23,6 +23,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -34,7 +35,7 @@ public class TokenAuthenticationService {
 
     private static final long EXPIRATION_TIME = 2_592_000_000L; // Month
     private static final String SECRET = "D90#11%fhBpP";
-    private static final String TOKEN_PREFIX = "Sharing";
+    private static final String TOKEN_PREFIX = "Bearer";
     public static final String HEADER_STRING = "Authorization";
 
     private final UserRepository userRepository;
@@ -55,6 +56,8 @@ public class TokenAuthenticationService {
 
     public Authentication getAuthentication(final HttpServletRequest request) {
         final String token = request.getHeader(HEADER_STRING);
+        Enumeration<String> headerNames = request.getHeaderNames();
+
         if (StringUtils.isNotEmpty(token)) {
             if (getVerificationTokenDbo(token) == null) {
                 throw new BasicBookSharingException("This token can't be trusted as it was marked as logged out");

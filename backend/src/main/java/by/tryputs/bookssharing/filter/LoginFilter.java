@@ -9,6 +9,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
@@ -56,8 +58,14 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
                                             final Authentication authResult) {
         // Write Authorization to Headers of Response.
         final String alias = authResult.getName();
-        final String roles = authResult.getAuthorities().stream().map(GrantedAuthority::getAuthority)
-            .collect(Collectors.joining(","));
+        final String roles =
+                authResult.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining(
+                        ","));
+        SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(alias, null,
+                authResult.getAuthorities().stream()
+                        .map(GrantedAuthority::getAuthority)
+                        .map(SimpleGrantedAuthority::new)
+                        .collect(Collectors.toList())));
         tokenAuthenticationService.addAuthentication(response, alias, roles);
     }
 
