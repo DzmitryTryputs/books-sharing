@@ -18,8 +18,7 @@ import static org.junit.Assert.fail;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = BooksSharingApplication.class)
-@ActiveProfiles("test")
+@SpringBootTest
 @Transactional
 public abstract class AbstractSpringMvcTest {
 
