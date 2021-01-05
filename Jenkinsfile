@@ -1,34 +1,25 @@
 pipeline {
     agent any
     tools {
-        jdk "JDK 11.0.3(aws)"
+         maven 'Maven 3.3.9'
+         jdk 'jdk8'
     }
     stages {
-        stage('Backend install') {
+        stage('Initialize') {
             steps {
-                script {
-                    bat 'cd backend && mvn clean install'
-                }
+                 sh '''
+                     echo "PATH = ${PATH}"
+                      echo "M2_HOME = ${M2_HOME}"
+                 '''
             }
         }
-        stage('Front install') {
+        stage('Build') {
             steps {
-                script {
-                    bat 'cd frontend && npm i'
-                }
+                sh 'mvn -Dmaven.test.failure.ignore=true install'
             }
-        }
-        stage('Front run') {
-            steps {
-                script {
-                    bat 'cd frontend && start npm run start'
-                }
-            }
-        }
-        stage('Backend run') {
-            steps {
-                script {
-                    bat 'cd backend && start mvn spring-boot:run -DskipTests'
+            post {
+                success {
+                    unit 'target/surefire-reports/**/*.xml'
                 }
             }
         }
