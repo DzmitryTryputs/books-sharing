@@ -1,27 +1,20 @@
 pipeline {
-    agent any
-    tools {
-        maven 'maven-3.6.3'
-        jdk 'jdk8'
-    }
-
+    agent none
     stages {
-        stage('Initialize') {
+        stage('Back-end') {
+            agent {
+                docker { image 'maven:3-alpine' }
+            }
             steps {
-                 sh '''
-                     echo "PATH = ${PATH}"
-                      echo "M2_HOME = ${M2_HOME}"
-                 '''
+                sh 'mvn --version'
             }
         }
-        stage('Build') {
-            steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install'
+        stage('Front-end') {
+            agent {
+                docker { image 'node:14-alpine' }
             }
-            post {
-                success {
-                    unit 'target/surefire-reports/**/*.xml'
-                }
+            steps {
+                sh 'node --version'
             }
         }
     }
