@@ -1,8 +1,24 @@
-node {
-    /* Requires the Docker Pipeline plugin to be installed */
-    docker.image('node:14-alpine').inside {
-        stage('Test') {
-            sh 'node --version'
+Jenkinsfile (Declarative Pipeline)
+pipeline {
+    agent any
+    tools {
+        maven 'maven-3.6.3'
+        jdk 'jdk8'
+    }
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }
+
+        stage ('Build') {
+            steps {
+                echo 'This is a minimal pipeline.'
+            }
         }
     }
 }
